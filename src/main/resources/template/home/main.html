@@ -1,0 +1,7 @@
+<link rel="stylesheet" type="text/css" th:href="@{/navbar_style.css}">
+<div>
+    <div>메인</div>
+    <a sec:authorize="isAnonymous()" href="/user/login">로그인</a>
+    <a sec:authorize="isAuthenticated()" href="/user/logout">로그아웃</a>
+    <a href="/user/signup">회원가입</a>
+</div>
