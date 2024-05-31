@@ -26,10 +26,25 @@ public class SecurityConfig {
                                 .loginPage("/user/login")
                                 .defaultSuccessUrl("/")
                 )
-                .oauth2Login(
-                        oauth2Login -> oauth2Login
-                                .loginPage("/user/login")
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/oauth-login/admin").hasRole("ADMIN")
+                        .requestMatchers("/oauth-login/info").authenticated()
+                        .anyRequest().permitAll()
                 )
+                .formLogin((auth) -> auth.loginPage("/oauth-login/login")
+                        .loginProcessingUrl("/oauth-login/loginProc")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/oauth-login")
+                        .failureUrl("/oauth-login")
+                        .permitAll())
+                .oauth2Login((auth) -> auth.loginPage("/oauth-login/login")
+                        .defaultSuccessUrl("/oauth-login")
+                        .failureUrl("/oauth-login/login")
+                        .permitAll())
+                .logout((auth) -> auth
+                        .logoutUrl("/oauth-login/logout"))
+                .csrf((auth) -> auth.disable())
                 .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))

@@ -28,17 +28,17 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    @Transactional
-    public User whenSocialLogin(String providerTypeCode, String username, String nickname) {
-        Optional<User> opUser = findByUsername(username);
-
-        if (opUser.isPresent()) {
-            return opUser.get();
-        }
-
-        // 소셜 로그인를 통한 가입시 비번은 없다.
-        return signup(username, passwordEncoder.encode(""), nickname, "", "");
-    }
+//    @Transactional
+//    public User whenSocialLogin(String providerTypeCode, String username, String nickname) {
+//        Optional<User> opUser = findByUsername(username);
+//
+//        if (opUser.isPresent()) {
+//            return opUser.get();
+//        }
+//
+//        // 소셜 로그인를 통한 가입시 비번은 없다.
+//        return signup(username, passwordEncoder.encode(""), nickname, "", "");
+//    }
 
     private Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
