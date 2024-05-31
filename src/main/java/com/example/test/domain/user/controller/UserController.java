@@ -34,11 +34,10 @@ public class UserController {
 
     @PostMapping("/signup")
     public String signup(@Valid SignForm signForm) {
-
         userService.signup(signForm.getUsername(), signForm.getPassword(), signForm.getNickname(), signForm.getEmail(), signForm.getPhone());
-
         return "redirect:/user/login";
     }
+
     @Getter
     @Setter
     @ToString
