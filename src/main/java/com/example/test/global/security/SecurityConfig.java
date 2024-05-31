@@ -43,13 +43,17 @@ public class SecurityConfig {
                         .failureUrl("/user/login")
                         .permitAll())
                 .logout((auth) -> auth
-                        .logoutUrl("/logout"))
+                        .logoutUrl("/logout")
+                )
                 .csrf((auth) -> auth.disable())
                 .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                                 .logoutSuccessUrl("/")
-                                .invalidateHttpSession(true));
+                                .invalidateHttpSession(true)
+//                                .deleteCookies("JSESSIONID")
+                );
+
         return http.build();
     }
 
