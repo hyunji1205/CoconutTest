@@ -79,12 +79,23 @@
             margin-bottom: 0.5em;
             background-color: #eee;
             border-radius: 4px;
-            color: #333;
+            color: black;
             text-decoration: none;
             transition: background-color 0.3s;
         }
-        .social-login a:hover {
-            background-color: #ddd;
+        .kakao-login a {
+            background-color: yellow;
+            text-decoration: none;
+        }
+        .google-login a {
+            background-color: red;
+            text-decoration: none;
+            color: white;
+        }
+        .naver-login a {
+            background-color: green;
+            text-decoration: none;
+            color: white;
         }
     </style>
 </head>
@@ -105,9 +116,15 @@
         <a href="/user/signup">회원가입</a>
     </form>
     <div class="social-login">
-        <a th:href="@{/oauth2/authorization/kakao}">카카오 로그인</a>
-        <a th:href="@{/oauth2/authorization/google}">구글 로그인</a>
-        <a th:href="@{/oauth2/authorization/naver}">네이버 로그인</a>
+        <div class="kakao-login">
+            <a th:href="@{/oauth2/authorization/kakao}">카카오 로그인</a>
+        </div>
+        <div class="google-login">
+            <a th:href="@{/oauth2/authorization/google}">구글 로그인</a>
+        </div>
+        <div class="naver-login">
+            <a th:href="@{/oauth2/authorization/naver}">네이버 로그인</a>
+        </div>
     </div>
 </div>
 </body>

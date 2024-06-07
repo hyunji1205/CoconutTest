@@ -2,15 +2,13 @@ package com.example.test.domain.user.entity;
 
 import com.example.test.global.jpa.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Comment;
 
 @Entity
 @Getter
+@Setter
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,6 +28,9 @@ public class User extends BaseEntity {
     private String email;
 
     private String phone;
+
+    private String profileImagePath;  // 이미지 파일 경로
+
     // provider : google이 들어감
     private String provider;
 
