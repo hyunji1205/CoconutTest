@@ -67,6 +67,7 @@ public class UserController {
         return "redirect:/user/profile";
     }
 
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/posts")
     public String myPostsPage(Model model) {
@@ -115,19 +116,16 @@ public class UserController {
     @Setter
     @ToString
     public static class EditProfileForm {
-        @NotBlank(message = "프로필 이미지를 선택해주세요.")
-        private String profileImage;
 
-        @NotBlank(message = "닉네임을 입력해주세요.")
+        @NotBlank
         private String nickname;
 
         // 비밀번호가 비어도 수정할 수 있도록 변경
         private String password;
 
-        @NotBlank(message = "전화번호를 입력해주세요.")
+        @NotBlank
         private String phone;
 
-        // 프로필 이미지 파일을 받기 위해 MultipartFile 필드 추가
-        private MultipartFile profileImageFile;
+        private MultipartFile profileImageFile;  // 추가
     }
 }

@@ -68,7 +68,7 @@ public class UserService {
     }
 
     private String saveProfileImage(MultipartFile profileImageFile) throws IOException {
-        String uploadDir = "uploads/";
+        String uploadDir = "/Users/jaemin/work/upload/";
         File uploadDirFile = new File(uploadDir);
         if (!uploadDirFile.exists()) {
             uploadDirFile.mkdirs();
@@ -80,7 +80,7 @@ public class UserService {
         File destinationFile = new File(uploadDir + newFilename);
         profileImageFile.transferTo(destinationFile);
 
-        return destinationFile.getAbsolutePath();
+        return  newFilename;
     }
 
 

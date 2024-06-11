@@ -22,35 +22,73 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 600px;
-      text-align: center;
     }
     h1 {
       margin-bottom: 1.5em;
       font-size: 24px;
+      text-align: center;
     }
     .profile-info {
-      text-align: left;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1em;
       margin-bottom: 1em;
+      text-align: left;
+    }
+    .profile-info img {
+      display: block;
+      margin: 0 auto 1em;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
     }
     .profile-info label {
       font-weight: bold;
+      display: block;
     }
-    .profile-info div {
-      margin-bottom: 0.5em;
+    .profile-info input {
+      width: calc(100% - 20px);
+      padding: 0.5em;
+      margin: 0.5em 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
     .actions {
+      text-align: center;
       margin-top: 1.5em;
     }
-    .actions a {
+    .actions button {
       padding: 0.75em 1.5em;
       background-color: black;
       color: white;
       text-decoration: none;
       border-radius: 4px;
+      border: none;
+      cursor: pointer;
       transition: background-color 0.3s;
     }
-    .actions a:hover {
+    .actions button:hover {
       background-color: gray;
+    }
+    .links {
+      margin-top: 2em;
+    }
+    .links a {
+      display: block;
+      padding: 1em;
+      border-bottom: 1px solid #ccc;
+      text-decoration: none;
+      color: black;
+      transition: background-color 0.3s;
+    }
+    .links a:hover {
+      background-color: #f5f5f5;
+    }
+    .links a::after {
+      content: '+';
+      float: right;
+      font-size: 1.5em;
     }
   </style>
 </head>
@@ -59,29 +97,31 @@
   <h1>MY페이지</h1>
   <div class="profile-info">
     <div>
-      <img th:src="@{${user.profileImagePath}}" class="profile-img" alt="Profile Image">
+      <img th:src="@{|/file/${user.profileImagePath}|}" class="profile-img" alt="Profile Image">
     </div>
     <div>
-      <label>닉네임:</label> <span th:text="${user.nickname}"></span>
+      <label>닉네임:</label>
+      <input type="text" th:value="${user.nickname}" readonly>
     </div>
     <div>
-      <label>아이디:</label> <span th:text="${user.username}"></span>
+      <label>아이디:</label>
+      <input type="text" th:value="${user.username}" readonly>
     </div>
     <div>
-      <label>비밀번호:</label> <span>*********</span>
+      <label>비밀번호:</label>
+      <input type="password" value="*********" readonly>
     </div>
     <div>
-      <label>전화번호:</label> <span th:text="${user.phone}"></span>
+      <label>전화번호:</label>
+      <input type="text" th:value="${user.phone}" readonly>
+    </div>
+    <div class="actions">
+      <a th:href="@{/user/profile/edit}"><button type="button">수정하기</button></a>
     </div>
   </div>
-  <div class="actions">
-    <a th:href="@{/user/profile/edit}">수정하기</a>
-  </div>
-  <div>
-    <a href="#">내가 쓴 게시글</a>
-  </div>
-  <div>
-    <a href="#">스크랩 목록</a>
+  <div class="links">
+    <a th:href="@{/user/posts}">내가 쓴 게시글</a>
+    <a th:href="@{/user/scrap}">스크랩 목록</a>
   </div>
 </div>
 </body>
