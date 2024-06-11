@@ -1,6 +1,5 @@
 package com.example.test.domain.user.controller;
 
-
 import com.example.test.domain.user.entity.User;
 import com.example.test.domain.user.service.UserService;
 import jakarta.validation.Valid;
@@ -52,6 +51,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "user/profile";
     }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/profile/edit")
     public String editProfilePage(Model model) {
@@ -67,7 +67,6 @@ public class UserController {
         return "redirect:/user/profile";
     }
 
-
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/posts")
     public String myPostsPage(Model model) {
@@ -81,7 +80,6 @@ public class UserController {
         // 사용자의 스크랩 목록을 모델에 추가
         return "user/scrap";
     }
-
 
     @Getter
     @Setter
