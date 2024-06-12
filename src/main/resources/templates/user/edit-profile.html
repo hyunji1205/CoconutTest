@@ -74,8 +74,15 @@
   <form th:action="@{/user/profile/edit}" method="post" enctype="multipart/form-data">
     <!-- 프로필 이미지 미리보기 -->
     <div class="form-group profile-img-preview">
-      <label for="profileImageFile"></label>
-      <img id="profileImgPreview" src="/default_profile_image.jpg" alt="Profile Image">
+      <label for="profileImageFile">프로필 이미지</label>
+      <div th:if="${user.profileImagePath == null}">
+        <!-- 기본 이미지 -->
+        <img src="/default_profile_image.jpg" class="profile-img" alt="Default Profile Image">
+      </div>
+      <div th:if="${user.profileImagePath != null}">
+        <!-- 사용자가 업로드한 이미지 -->
+        <img th:src="@{|/file/${user.profileImagePath}|}" class="profile-img" alt="Profile Image">
+      </div>
     </div>
     <!-- 프로필 이미지 업로드 -->
     <div class="form-group">
@@ -102,7 +109,7 @@
   function previewImage(event) {
     var reader = new FileReader();
     reader.onload = function(){
-      var profileImgPreview = document.getElementById('profileImgPreview');
+      var profileImgPreview = document.querySelector('.profile-img-preview img');
       profileImgPreview.src = reader.result;
     };
     reader.readAsDataURL(event.target.files[0]);

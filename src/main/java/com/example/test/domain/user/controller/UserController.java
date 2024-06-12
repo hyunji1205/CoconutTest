@@ -57,6 +57,7 @@ public class UserController {
     public String editProfilePage(Model model) {
         User user = userService.getCurrentUser();
         model.addAttribute("user", user);
+        model.addAttribute("profileImagePath", user.getProfileImagePath());
         return "user/edit-profile";
     }
 
